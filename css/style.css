@@ -1,0 +1,17 @@
+.margin-atas{
+	margin-top: 50px;
+}
+
+.bg-bandara{
+	background: url('../img/back-lg.jpg');
+	background-size:cover;
+}
+
+.bg-regis{
+	background: url('../img/back-md.jpg');
+	background-size:cover;
+}
+
+.text-right{
+	align-items: right;
+}
