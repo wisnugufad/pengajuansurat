@@ -31,12 +31,12 @@
 
             <div class="col-md-12">
                 <label for="exampleInputName">NIK</label>
-                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter NIK" name="nik" required>
+                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter NIK" name="nik" required autocomplete="off">
               </div>
 
               <div class="col-md-12">
                 <label for="exampleInputName">Nama</label>
-                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name" name="nama" required>
+                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name" name="nama" required autocomplete="off">
               </div>
 
               <div class="col-md-12">
@@ -46,12 +46,12 @@
 
               <div class="col-md-12">
                 <label for="exampleInputName">perusahaan</label>
-                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Nama Perusahaan" name="perusahaan" required>
+                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Nama Perusahaan" name="perusahaan" required autocomplete="off">
               </div>
 
               <div class="col-md-12">
                 <label for="exampleInputName">Jabatan Pimpinan/Penanggung Jawab</label>
-                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Enter first name" name="jabatan">
+                <input class="form-control" id="exampleInputName" type="text" aria-describedby="nameHelp" placeholder="Jabatan" name="jabatan" autocomplete="off">
               </div>
 
               <div class="col-md-6">
@@ -67,19 +67,19 @@
 
           <div class="form-group">
             <label for="exampleInputEmail1">Email Perusahaan</label>
-            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email" name="email">
+            <input class="form-control" id="exampleInputEmail1" type="email" aria-describedby="emailHelp" placeholder="Enter email" name="email" autocomplete="off">
           </div>
 
           <div class="form-group">
             <label for="exampleInputEmail1">No Telp</label>
-            <input class="form-control" type="text" placeholder="08123456789" name="telp" required>
+            <input class="form-control" type="text" placeholder="08123456789" name="telp" required autocomplete="off"> 
           </div>
 
           <div class="form-group">
             <div class="form-row">
               <div class="col-md-12">
                 <label for="exampleInputPassword1">Alamat Perusahaan</label>
-                <textarea class="form-control" rows="3" name="alamat" required></textarea>
+                <textarea class="form-control" rows="3" name="alamat" required autocomplete="off"></textarea>
               </div>
 
             <div class="form-group">

@@ -5,8 +5,15 @@
       header("location: fungsi/logout.php");
     }
     $nik=$_SESSION['nik'];
+    $nama = $_SESSION['nama'];
+    $status = $_SESSION['status'];
     //include data karyawan
-    $sql="SELECT * FROM `karyawan` WHERE NIK='$nik'";
+    if ($status=="karyawan") {
+      $sql="SELECT * FROM `karyawan` WHERE NIK='$nik'";
+    }else{
+      $sql="SELECT * FROM bandara WHERE NIK='$nik'";
+    }
+    
     $result=mysqli_query($koneksi,$sql);
     $row=mysqli_fetch_array($result);
 
@@ -33,7 +40,7 @@
   <!-- Navigation-->
   <?php
       include 'fungsi/navigasi.php';
-      echo navbar_atas($row['nama']);
+      echo navbar_atas($nama,$status);
   ?>
   <div class="content-wrapper">
     <div class="container-fluid">
@@ -77,8 +84,6 @@
             <div class="card-body">
               <h5>TTD Pimpinan / Penanggung Jawab</h5>
           <img src="img/<?php echo $row['ttd']?>" height="100px">
-          <h5>Kop Surat</h5>
-          <input type="text" name="" class="form-control" value="Deni" disabled="true">
             </div>
           </div>
     </div>

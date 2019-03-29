@@ -1,5 +1,8 @@
 <?php   
-
+    include 'fungsi/koneksi.php'; 
+    session_start();
+    $nama = $_SESSION['nama'];
+    $status = $_SESSION['status'];
  ?>
  <!DOCTYPE html>
 <html lang="en">
@@ -9,7 +12,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <title>SB Admin - Start Bootstrap Template</title>
+  <title>Complete</title>
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template-->
@@ -25,7 +28,7 @@
   <!-- Navigation-->
   <?php
       include 'fungsi/navigasi.php';
-      echo navbar_atas("Wisnu");
+      echo navbar_atas($nama,$status);
   ?>
   <div class="content-wrapper">
     <div class="container-fluid">
@@ -58,29 +61,44 @@
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
               <thead>
                 <tr>
-                  <th>Tanggal</th>
-                  <th>No Surat</th>
-                  <th>From</th>
-                  <th>Route</th>
-                  <th>STD (LT)</th>
-                  <th>ETD (LT)</th>
-                  <th>STA (LT)</th>
-                  <th>ETA (LT)</th>
-                  <th>Keterangan</th>
-                  <th>Status</th>
-              <tbody>
-                <tr>
-                  <td>Tiger Nixon</td>
-                  <td>System Architect</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>$320,800</td>
-                  <td>Edinburgh</td>
-                  <td>61</td>
-                  <td>2011/04/25</td>
-                  <td>$320,800</td>
+                  <th rowspan="2">No</th>
+                  <th rowspan="2">Nomor Surat</th>
+                  <th rowspan="2">Tanggal</th>
+                  <th rowspan="2">Perihal</th>
+                  <th rowspan="2">Route</th>
+                  <th colspan="2" class="text-center">Status</th>
                 </tr>
+                <tr>
+                  <th>Dikirim</th>
+                  <th>Diterima</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php
+                    $no=0;
+                    $tabel="SELECT * FROM approve, surat";
+                    $res=mysqli_query($koneksi,$tabel);
+                    while ($row=mysqli_fetch_array($res)) {
+                      $time=strtotime($row['tgl_approve']);
+                ?>
+                    <td><?php echo ++$no; ?></td>
+                    <td><a href="surat_approve.php?nomor=<?php echo $row['surat_bandara'];?>"><?php echo $row['surat_bandara']; ?></a></td>
+                    <td><?php echo date("d-m-Y",$time); ?></td>
+                    <td><?php echo $row['perihal']; ?></td>
+                    <td><?php echo $row['route']; ?></td>
+                    <td><?php echo $row['tgl_kirim']; ?></td>
+                    <td>
+                      <?php 
+                          if ($row['tgl_dibaca']=="") {
+                            echo "Belum Dibaca";
+                          }else{
+                            echo $row['tgl_dibaca'];
+                          }
+                      ?>  
+                    </td>
+                <?php
+                    }
+                ?>
               </tbody>
             </table>
           </div>

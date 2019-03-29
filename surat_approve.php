@@ -1,5 +1,26 @@
 <?php 
+	include 'fungsi/koneksi.php';
+	date_default_timezone_set('Asia/Bangkok');
+    session_start();
+    $nama = $_SESSION['nama'];
+    $status = $_SESSION['status'];
+    $sql="SELECT karyawan.ttd as ttd_karyawan,
+    		karyawan.nama as nama_karyawan,
+    		bandara.ttd as ttd_bandara,
+    		bandara.nama as nama_bandara,
+    		surat.nomor_surat as nomor_surat,
+    		surat.tanggal_surat as tanggal,
+    		surat.sta as sta,
+    		surat.std as std,
+    		surat.perihal as perihal,
+    		approve.tgl_approve as tgl_approve
+    		 FROM surat, approve, bandara,karyawan WHERE surat.nomor_surat=approve.nomor_surat AND surat.NIK=karyawan.NIK AND bandara.NIK=approve.nik_bandara";
+    $res=mysqli_query($koneksi,$sql);
+    $row=mysqli_fetch_array($res);
 
+    $cek = "SELECT * FROM surat WHERE nomor_surat='$nomor'";
+    $res2 = mysqli_query($koneksi,$cek);
+    $row2 = mysqli_fetch_array($res2);
  ?>
 
 <!DOCTYPE html>
@@ -24,17 +45,17 @@
 <h6><b>READ ITEM</b></h6>
 <br>
 Dengan hormat,<br>
-Telah diajukan Permohonan Slot dari PIC Slot dengan nomor : <b>AFI/WALL/03/2019/00064</b><br>
-Diajukan Slot Time Arrival 23:30, Disetujui Slot Time: 20:30 <br>
+Telah diajukan Permohonan Slot dari PIC Slot dengan nomor : <b><?php echo $row['nomor_surat'];?></b><br>
+Diajukan Slot Time Arrival <?php echo $row['sta'];?>, Disetujui Slot Time: <?php echo $row['std'];?><br>
 Note:<br><br>
 Berikut surat pengajuan terlampir : <br><br>
-20 March 2019,<br>
+<?php echo $row['tanggal'];?>,<br>
 an. GENERAL MANAGER <br>
 Airport Operation And Service Department Head <br>
 PT. Angkasa Pura I (Persero) Cabang Bandara Int'l SAMS <br>
 Sepingan - Balikpapan <br>
-<img src="img/lion_air.jpg" width="200px"><br>
-KUS HENDRATNO
+<img src="img/<?php echo $row['ttd_karyawan'];?>" width="200px"><br>
+<?php echo $row['nama_karyawan'];?>
 <hr>
 <div class="text-center">
 	<img src="img/sriwijaya.jpg" height="150px">
@@ -43,12 +64,12 @@ KUS HENDRATNO
 	<tr>
 		<td>Nomor </td>
 		<td> : </td>
-		<td> PAS/WALL/03/2019/000796</td>
+		<td><?php echo $row['ttd_bandara'];?></td>
 	</tr>
 	<tr>
 		<td>Perihal </td>
 		<td> : </td>
-		<td> Permohonan Slot Time Depature</td>
+		<td><?php echo $row['perihal'];?></td>
 	</tr>
 	<tr>
 		<td colspan="3"><br><br></td>
@@ -93,22 +114,22 @@ KUS HENDRATNO
 	</tr>
 	<tr class="text-center">
 		
-		<td>Adep</td>
-		<td>Ades</td>
+		<td>ETD</td>
+		<td>LTA</td>
 		<td>STD (UTC)</td>
 		<td>STA (UTC)</td>
 	</tr>
 	<tr class="text-center">
 		<td> Request </td>
-		<td> PXPUX/PKPUX </td>
-		<td> PKPUX </td>
-		<td> S76C </td>
-		<td> WALL/BPN </td>
-		<td> ZZZZ/NPU </td>
-		<td> 07:30 </td>
-		<td> 08:00 </td>
-		<td> 2019-03-21 - 2019-03-21 <br>
-			<span >4</span> 
+		<td><?php echo $row['flight_number'];?></td>
+		<td><?php echo $row['aircraft_reg'];?></td>
+		<td> ? </td>
+		<td><?php echo $row['etd'];?></td>
+		<td><?php echo $row['lta'];?></td>
+		<td><?php echo $row['std'];?></td>
+		<td><?php echo $row['sta'];?></td>
+		<td> ? <br>
+			<span >?</span> 
 		</td>
 	</tr>
 	<tr>
@@ -134,9 +155,9 @@ KUS HENDRATNO
 			<br>
 			PIC Slot
 			<br>
-			<img src="img/lion_air.jpg" width="200px">
+			<img src="img/<?php echo $row['ttd_bandara'];?>" width="200px">
 			<br>
-			Anang Julianto
+			<?php echo $row['nama_bandara'];?>
 		</td>
 	</tr>
 </table>

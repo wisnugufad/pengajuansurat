@@ -1,9 +1,18 @@
 <?php
 	include 'fungsi/koneksi.php';
+	date_default_timezone_set('Asia/Bangkok');
     session_start();
     $nama = $_SESSION['nama'];
     $status = $_SESSION['status'];
     $nomor = $_GET['nomor'];
+    $cek = "SELECT * FROM surat WHERE nomor_surat='$nomor'";
+    $res = mysqli_query($koneksi,$cek);
+    $row = mysqli_fetch_array($res);
+    if ($row['tgl_dibaca']=="") {
+    	$dibaca = date("Y-m-d H:i:s");
+    	$upd = "UPDATE surat SET tgl_dibaca='$dibaca'";
+    	$hasil = mysqli_query($koneksi,$upd);
+    }
     $cek = "SELECT * FROM surat WHERE nomor_surat='$nomor'";
     $res = mysqli_query($koneksi,$cek);
     $row = mysqli_fetch_array($res);
@@ -16,7 +25,7 @@
   <meta name="viewport" content="widtd=device-widtd, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="autdor" content="">
-  <title>Status Pengajuan</title>
+  <title>Persetujuan</title>
   <!-- Bootstrap core CSS-->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for tdis template-->
@@ -37,7 +46,16 @@
     <div class="container-fluid">
       <div class="row margin-atas">
         <div class="col-12">
-          <!-- Area Chart Example-->
+        <div class="card mb-3">
+        <div class="card-header">
+          <h5><i class="fa fa-file-o"></i> APPROVE</h5></div>
+        <div class="card-body">
+          </i><h5>Nomor Surat Persetujuan</h5>
+          <form class="form-grup" action="fungsi/approve.php" method="POST">
+          <input type="text" name="nomor_bandara" class="form-control"><br>
+          <input type="text" name="nomor_surat" value="<?php echo $row['nomor_surat']?>" hidden>
+          <input class="btn btn-primary btn-block" type="submit" name="approve" value="APPROVE"></form>
+        </div></div>
       <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-envelope"></i> Nomor Surat : <?php echo $nomor; ?></div>

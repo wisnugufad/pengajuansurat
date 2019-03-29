@@ -25,11 +25,11 @@
         <form action="fungsi/session.php" method="POST">
           <div class="form-group">
             <label for="exampleInputEmail1">NIK</label>
-            <input class="form-control" type="text"  name="nik" placeholder="NIK" required>
+            <input class="form-control" type="text"  name="nik" placeholder="NIK" required autocomplete="off">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Password</label>
-            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password" name="pass" required>
+            <input class="form-control" id="exampleInputPassword1" type="password" placeholder="Password" name="pass" required autocomplete="off">
           </div>
           <input type="submit" class="btn btn-block btn-primary" name="login" value="Login">
         </form>

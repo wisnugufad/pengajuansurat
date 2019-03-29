@@ -63,7 +63,7 @@
                       $time=strtotime($row['tanggal_surat']);
                 ?>
                     <td><?php echo ++$no; ?></td>
-                    <td><a href="dikirim.php?nomor=<?php echo $row['nomor_surat'];?>"><?php echo $row['nomor_surat']; ?></a></td>
+                    <td><a href="persetujuan.php?nomor=<?php echo $row['nomor_surat'];?>"><?php echo $row['nomor_surat']; ?></a></td>
                     <td><?php echo date("d-m-Y",$time); ?></td>
                     <td><?php echo $row['perihal']; ?></td>
                     <td><?php echo $row['route']; ?></td>
