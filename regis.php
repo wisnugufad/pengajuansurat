@@ -25,7 +25,7 @@
 
 
 		if ($pihak == 1) {
-			$sql = "INSERT INTO `bandara`(`NIK`, `password`, `nama`, `jabatan`, `perusahaan`, `email_per`, `alamat_per`, `no_telp`, `ttd`) VALUES ('$nik','$pass','$nama','$jabatan','$perusahaan','$email','$alamat','$telp','$namafile')";
+			$sql = "INSERT INTO `bandara`(`nik_bandara`, `password`, `nama`, `jabatan`, `perusahaan`, `email_per`, `alamat_per`, `no_telp`, `ttd`) VALUES ('$nik','$pass','$nama','$jabatan','$perusahaan','$email','$alamat','$telp','$namafile')";
 			$result = mysqli_query($koneksi,$sql);
 			if ($result) {
 				header("location: index.php");
@@ -33,7 +33,7 @@
 				header("location: register.php");
 			}
 		}else{
-			$sql = "INSERT INTO `karyawan`(`NIK`, `password`, `nama`, `jabatan`, `perusahaan`, `email_per`, `alamat_per`, `no_telp`, `ttd`) VALUES ('$nik','$pass','$nama','$jabatan','$perusahaan','$email','$alamat','$telp','$namafile')";
+			$sql = "INSERT INTO `karyawan`(`nik`, `password`, `nama`, `jabatan`, `perusahaan`, `email_per`, `alamat_per`, `no_telp`, `ttd`) VALUES ('$nik','$pass','$nama','$jabatan','$perusahaan','$email','$alamat','$telp','$namafile')";
 			$result = mysqli_query($koneksi,$sql);
 			if ($result) {
 				header("location: index.php");

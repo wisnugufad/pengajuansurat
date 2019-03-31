@@ -58,7 +58,7 @@
                 <label for="exampleInputLastName">Bagian/Sebagai</label>
                 <select name="pihak" class="form-control">
                   <option value="1">Pihak Bandara</option>
-                  <option value="2">Pihak Maskapai</option>
+                  <option value="2">Pihak Airline</option>
                 </select>
               </div>
 

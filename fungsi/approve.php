@@ -13,6 +13,8 @@
 
     	$sql="INSERT INTO `approve`(`surat_bandara`, `nomor_surat`, `nik_bandara`, tgl_approve) VALUES ('$surat_bandara','$nomor_surat','$nik_bandara','$tgl')";
     	$res=mysqli_query($koneksi,$sql);
+        $sql1="UPDATE surat SET status='APPROVE'";
+        $res1=mysqli_query($koneksi,$sql1);
     	if ($res) {
     		header("location: ../complete.php");
     	}

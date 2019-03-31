@@ -9,9 +9,9 @@
     $status = $_SESSION['status'];
     //include data karyawan
     if ($status=="karyawan") {
-      $sql="SELECT * FROM `karyawan` WHERE NIK='$nik'";
+      $sql="SELECT * FROM `karyawan` WHERE nik='$nik'";
     }else{
-      $sql="SELECT * FROM bandara WHERE NIK='$nik'";
+      $sql="SELECT * FROM bandara WHERE nik_bandara='$nik'";
     }
     
     $result=mysqli_query($koneksi,$sql);
@@ -49,7 +49,7 @@
           <!-- Area Chart Example-->
       <div class="card mb-3">
         <div class="card-header">
-          <i class="fa fa-area-chart"></i> Data Stackholder</div>
+          <i class="fa fa-address-card"></i> Data Stackholder</div>
         <div class="card-body">
           <h5>Nama Pimpinan / Penanggung Jawab</h5>
           <input type="text" name="" class="form-control" value="<?php echo $row['nama']?>" disabled="true">
@@ -62,7 +62,7 @@
           <!-- Example Bar Chart Card-->
           <div class="card mb-3">
             <div class="card-header">
-              <i class="fa fa-bar-chart"></i> Data PIC</div>
+              <i class="fa fa-address-book"></i> Data PIC</div>
             <div class="card-body">
               <h5>Perusahaan</h5>
           <input type="text" name="" class="form-control" disabled="true" value="<?php echo $row['perusahaan']?>">
@@ -80,7 +80,7 @@
           <!-- Example Pie Chart Card-->
           <div class="card mb-3">
             <div class="card-header">
-              <i class="fa fa-pie-chart"></i> Data Surat</div>
+              <i class="fa fa-file-image-o"></i> Data Surat</div>
             <div class="card-body">
               <h5>TTD Pimpinan / Penanggung Jawab</h5>
           <img src="img/<?php echo $row['ttd']?>" height="100px">

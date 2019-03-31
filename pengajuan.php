@@ -41,16 +41,19 @@
           <hr>
           <form action="fungsi/ajukan.php" method="POST" class="form-group">
           	<table>
+            <tr><td colspan="3"><h3>Identitas Surat</h3><hr></td></tr>
           		<tr>
           			<td><b>Nomor Surat Perusahaan</b></td>
           			<td>&nbsp;</td>
           			<td><input type="text" name="nomor" class="form-control" autocomplete="off"></td>
           		</tr>
+              <tr><td>&nbsp;</td></tr>
               <tr>
                 <td><b>Tanggal Surat</b></td>
                 <td>&nbsp;</td>
                 <td width="70%"><input type="date" name="tgl" class="form-control" autocomplete="off"></td>
               </tr>
+              <tr><td>&nbsp;</td></tr>
               <tr>
                 <td><b>Kop Surat</b></td>
                 <td>&nbsp;</td>
@@ -68,51 +71,79 @@
                   </select>
                 </td>
               </tr>
+              <tr><td>&nbsp;</td></tr>
           		<tr>
           			<td><b>Perihal</b></td>
           			<td>&nbsp;</td>
           			<td><input type="text" name="perihal" class="form-control" autocomplete="off"></td>
           		</tr>
+              <tr><td>&nbsp;</td></tr>
+              <tr>
+                <td><b>Arrival/Departure</b></td>
+                <td>&nbsp;</td>
+                <td>
+                  <select name="arr_dep" class="form-control">
+                    <option value="FLIGHT ARRIVAL">FLIGHT ARRIVAL</option>
+                    <option value="FLIGHT DEPARTURE">FLIGHT DEPARTURE</option>
+                  </select>
+                </td>
+              </tr>
+              <tr><td>&nbsp;</td></tr>
+              <tr>
+                <td><b>Time EXTEND</b></td>
+                <td>&nbsp;</td>
+                <td><input type="text" name="time" class="form-control" autocomplete="off"></td>
+              </tr>
+              <tr><td>&nbsp;</td></tr>
+              <tr><td colspan="3"><h3>Isi Surat</h3><hr></td></tr>
           		<tr>
           			<td><b>Flight Number</b></td>
           			<td>&nbsp;</td>
           			<td><input type="text" name="flight" class="form-control" autocomplete="off"></td>
           		</tr>
+              <tr><td>&nbsp;</td></tr>
           		<tr>
           			<td><b>Aircraft Reg</b></td>
           			<td>&nbsp;</td>
           			<td><input type="text" name="aircraft" class="form-control" autocomplete="off"></td>
           		</tr>
+              <tr><td>&nbsp;</td></tr>
           		<tr>
           			<td><b>Route</b></td>
           			<td>&nbsp;</td>
           			<td><input type="text" name="route" class="form-control" autocomplete="off"></td>
           		</tr>
+              <tr><td>&nbsp;</td></tr>
           		<tr>
           			<td><b>STD (LT)</b></td>
           			<td>&nbsp;</td>
           			<td><input type="text" name="std" class="form-control" autocomplete="off"></td>
           		</tr>
+              <tr><td>&nbsp;</td></tr>
           		<tr>
-          			<td><b>ETD (LT)</b></td>
+          			<td><b>ATD (LT)</b></td>
           			<td>&nbsp;</td>
           			<td><input type="text" name="etd" class="form-control" autocomplete="off"></td>
           		</tr>
+              <tr><td>&nbsp;</td></tr>
           		<tr>
           			<td><b>STA (LT)</b></td>
           			<td>&nbsp;</td>
           			<td><input type="text" name="sta" class="form-control" autocomplete="off"></td>
           		</tr>
+              <tr><td>&nbsp;</td></tr>
           		<tr>
-          			<td><b>ETA (LT)</b></td>
+          			<td><b>ATA (LT)</b></td>
           			<td>&nbsp;</td>
           			<td><input type="text" name="eta" class="form-control" autocomplete="off"></td>
           		</tr>
+              <tr><td>&nbsp;</td></tr>
           		<tr>
           			<td><b>Keterangan</b></td>
           			<td>&nbsp;</td>
           			<td><textarea class="form-control" name="keterangan" rows="2" autocomplete="off"></textarea></td>
           		</tr>
+              <tr><td>&nbsp;</td></tr>
               <tr>
                 <td colspan="3"><input type="submit" name="ajukan" class="btn btn-primary btn-block" value="AJUKAN"></td>
               </tr>

@@ -1,6 +1,9 @@
 <?php
     include 'fungsi/koneksi.php'; 
     session_start();
+    if (!isset($_SESSION['nik'])) {
+      header("location: fungsi/logout.php");
+    }
     $nama = $_SESSION['nama'];
     $status = $_SESSION['status'];
  ?>
@@ -57,11 +60,11 @@
               <tbody>
                 <?php
                     $no=0;
-                    $tabel="SELECT * FROM surat";
+                    $tabel="SELECT * FROM surat WHERE status='PENDING'";
                     $res=mysqli_query($koneksi,$tabel);
                     while ($row=mysqli_fetch_array($res)) {
                       $time=strtotime($row['tanggal_surat']);
-                ?>
+                ?><tr>
                     <td><?php echo ++$no; ?></td>
                     <td><a href="persetujuan.php?nomor=<?php echo $row['nomor_surat'];?>"><?php echo $row['nomor_surat']; ?></a></td>
                     <td><?php echo date("d-m-Y",$time); ?></td>
@@ -76,7 +79,7 @@
                             echo $row['tgl_dibaca'];
                           }
                       ?>  
-                    </td>
+                    </td></tr>
                 <?php
                     }
                 ?>

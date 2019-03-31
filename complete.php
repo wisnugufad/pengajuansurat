@@ -1,6 +1,9 @@
 <?php   
     include 'fungsi/koneksi.php'; 
     session_start();
+    if (!isset($_SESSION['nik'])) {
+      header("location: fungsi/logout.php");
+    }
     $nama = $_SESSION['nama'];
     $status = $_SESSION['status'];
  ?>
@@ -35,24 +38,6 @@
       <div class="row margin-atas">
         <div class="col-12">
           <h1>Complete Mail</h1>
-          <p>This is an example of a blank page that you can use as a starting point for creating new ones.</p>
-          <form action="" method="" class="form-group">
-            <table>
-              <tr>
-                <td><b>Tanggal Surat</b></td>
-                <td>&nbsp;</td>
-                <td><input type="date" name="" class="form-control"></td>
-                <td>&nbsp;<b> To </b>&nbsp;</td>
-                <td><input type="date" name="" class="form-control" value="<?php echo date('Y-m-d');?>"></td>
-              </tr>
-              <tr>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td colspan="3"><input type="submit" name="" class="btn btn-primary" value="search"></td>
-              </tr>
-            </table>
-          </form>
-          <!--penampilan tabel-->
           <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-table"></i> Data Table Example</div>
@@ -66,21 +51,23 @@
                   <th rowspan="2">Tanggal</th>
                   <th rowspan="2">Perihal</th>
                   <th rowspan="2">Route</th>
-                  <th colspan="2" class="text-center">Status</th>
+                  <th colspan="3" class="text-center">Status</th>
                 </tr>
                 <tr>
                   <th>Dikirim</th>
                   <th>Diterima</th>
+                  <th>Diapprove</th>
+                  <th>Aksi</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                     $no=0;
-                    $tabel="SELECT * FROM approve, surat";
+                    $tabel="SELECT * FROM approve, surat WHERE surat.nomor_surat=approve.nomor_surat";
                     $res=mysqli_query($koneksi,$tabel);
                     while ($row=mysqli_fetch_array($res)) {
                       $time=strtotime($row['tgl_approve']);
-                ?>
+                ?><tr>
                     <td><?php echo ++$no; ?></td>
                     <td><a href="surat_approve.php?nomor=<?php echo $row['surat_bandara'];?>"><?php echo $row['surat_bandara']; ?></a></td>
                     <td><?php echo date("d-m-Y",$time); ?></td>
@@ -88,14 +75,13 @@
                     <td><?php echo $row['route']; ?></td>
                     <td><?php echo $row['tgl_kirim']; ?></td>
                     <td>
-                      <?php 
-                          if ($row['tgl_dibaca']=="") {
-                            echo "Belum Dibaca";
-                          }else{
-                            echo $row['tgl_dibaca'];
-                          }
-                      ?>  
+                      <?php echo $row['tgl_dibaca'];?>  
                     </td>
+                    <td>
+                      <?php echo $row['tgl_approve'];?>  
+                    </td>
+                    <td><h6><a href="fungsi/hapus_complete.php?nomor=<?php echo $row['surat_bandara']; ?>"><button class="btn btn-danger"><span class="fa fa-trash"> Hapus</h6></span></button></a></td>
+                    </tr>
                 <?php
                     }
                 ?>

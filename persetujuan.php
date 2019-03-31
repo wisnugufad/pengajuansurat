@@ -13,7 +13,7 @@
     	$upd = "UPDATE surat SET tgl_dibaca='$dibaca'";
     	$hasil = mysqli_query($koneksi,$upd);
     }
-    $cek = "SELECT * FROM surat WHERE nomor_surat='$nomor'";
+    $cek = "SELECT * FROM surat, karyawan WHERE nomor_surat='$nomor' AND surat.NIK=karyawan.NIK";
     $res = mysqli_query($koneksi,$cek);
     $row = mysqli_fetch_array($res);
  ?>
@@ -46,7 +46,7 @@
     <div class="container-fluid">
       <div class="row margin-atas">
         <div class="col-12">
-        <div class="card mb-3">
+       <div class="card mb-3">
         <div class="card-header">
           <h5><i class="fa fa-file-o"></i> APPROVE</h5></div>
         <div class="card-body">
@@ -61,115 +61,113 @@
           <i class="fa fa-envelope"></i> Nomor Surat : <?php echo $nomor; ?></div>
         <div class="card-body">
           <div class="col-lg-12">
-<div class="text-center">
-	<img src="img/<?php echo $row['kop_surat'];?>" height="150px">
-</div>
-<table>
-	<tr>
-		<td width="100px">Nomor </td>
-		<td width="20px"> : </td>
-		<td><?php echo $row['nomor_surat'];?></td>
-	</tr>
-	<tr>
-		<td>Perihal </td>
-		<td> : </td>
-		<td><?php echo $row['perihal'];?></td>
-	</tr>
-	<tr>
-		<td colspan="3"><br><br></td>
-	</tr>
-	<tr>
-		<td colspan="3">Kepada Yth:</td>
-	</tr>
-	<tr>
-		<td colspan="3">GENERAL MANAGER</td>
-	</tr>
-	<tr>
-		<td colspan="3">Airport Operation And Service Departement Head</td>
-	</tr>
-	<tr>
-		<td colspan="3">PT. Angkasa Pura I (Persero) Cabang Bandara Intl'l SAMS</td>
-	</tr>
-	<tr>
-		<td colspan="3">Sepingan - Balikpapan</td>
-	</tr>
-	<tr>
-		<td colspan="3"><br><br></td>
-	</tr>
-	<tr>
-		<td>Dengan Hormat,</td>
-	</tr>
-	<tr>
-		<td colspan="3">
-			Berikut Kami Sampaikan permohonan slot time untuk keperluan charter flight dengan detail:
-		</td>
-	</tr>
-</table>
-<br>
-<table border="1"  width="100%">
-	<tr  class="text-center">
-		<td rowspan="2">#</td>
-		<td rowspan="2">Aircraft Identification</td>
-		<td rowspan="2">Areg</td>
-		<td rowspan="2">Aircraft type</td>
-		<td colspan="2">route</td>
-		<td colspan="2">flight schedule</td>
-		<td rowspan="2">DOF/DOS</td>
-	</tr>
-	<tr class="text-center">
-		
-		<td>ETD</td>
-		<td>LTA</td>
-		<td>STD (UTC)</td>
-		<td>STA (UTC)</td>
-	</tr>
-	<tr class="text-center">
-		<td> Request </td>
-		<td><?php echo $row['flight_number'];?></td>
-		<td><?php echo $row['aircraft_reg'];?></td>
-		<td> ? </td>
-		<td><?php echo $row['etd'];?></td>
-		<td><?php echo $row['lta'];?></td>
-		<td><?php echo $row['std'];?></td>
-		<td><?php echo $row['sta'];?></td>
-		<td> ? <br>
-			<span >?</span> 
-		</td>
-	</tr>
-	<tr>
-		<td> Remark </td>
-		<td colspan="8"> CHARTER FLIGHT, 30 Seat ke bawah /< 5700kg </td>
-	</tr>
-</table>
-<br>
-<table>
-<tr>
-	<td>Untuk pertimbangan ketersediaan slot, kami siap untuk diberikan waktu toleransi penggunaan slot time yaitu 15 menit sebelum atau sesudah dari slot yang diberikan.</td>
-</tr>
-<tr><td>Demikian pengajuan ini kami sampaikan, atas perhatian dan persetujuannya kami ucapkan terima kasih.</td></tr>
-</table>
-<br>
-<table width="100%">
-	<tr>
-		<td width="25%"></td>
-		<td width="25%"></td>
-		<td width="25%"></td>
-		<td class="text-center">
-			<?php $time=strtotime($row['tanggal_surat']);?>
-			Balikpapan, <?php echo date("d-m-Y",$time);?>
+			<div class="text-center">
+				<img src="kop/<?php echo $row['kop_surat'];?>" height="150px">
+			</div>
+			<table>
+				<tr>
+					<td width="100px">Nomor </td>
+					<td width="20px"> : </td>
+					<td><?php echo $row['nomor_surat'];?></td>
+				</tr>
+				<tr>
+					<td>Perihal </td>
+					<td> : </td>
+					<td><?php echo $row['perihal'];?></td>
+				</tr>
+				<tr>
+					<td colspan="3"><br><br></td>
+				</tr>
+				<tr>
+					<td colspan="3">Kepada Yth:</td>
+				</tr>
+				<tr>
+					<td colspan="3"><ol>
+					<li>GENERAL MANAGER PT.Angkasa pura 1 (persero)</li>
+					<li>GENERAL MANAGER LPPSPI</li>
+					</ol></td>
+				</tr>
+				<tr>
+					<td colspan="3">Airport Operation And Service Departement Head</td>
+				</tr>
+				<tr>
+					<td colspan="3">PT. Angkasa Pura I (Persero) Cabang Bandara Intl'l SAMS</td>
+				</tr>
+				<tr>
+					<td colspan="3">Sepingan - Balikpapan</td>
+				</tr>
+				<tr>
+					<td colspan="3"><br><br></td>
+				</tr>
+				<tr>
+					<td colspan="3">Dengan Hormat,</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						Berikut kami mengajukan <?php echo $row['perihal']." di jam ".$row['extend'];?> UTC di Bandara Sultan Aji Muhamad Sulaiman Sepingan Balikpapan. Untuk <b><?php echo $row['arr_dep'];?></b> pada tanggal <b><?php 
+						$fa=strtotime($row['tanggal_surat']);
+						echo date("d M Y",$fa);?></b> :
+					</td>
+				</tr>
+				<tr>
+					<td colspan="3">
+						<br><ul><li><b><?php echo $row['perihal']." TANGGAL ".date("d M Y",$fa);?></b></li></ul>
+					</td>
+				</tr>
+			</table>
+			<table border="1"  width="100%">
+				<tr  class="text-center">
+					<td rowspan="2">#</td>
+					<td rowspan="2">Aircraft Identification/FLIGHT</td>
+					<td rowspan="2">REG</td>
+					<td rowspan="2">ROUTE</td>
+					<td colspan="2">ETD/ATA</td>
+					<td colspan="2">flight schedule</td>
+					<td rowspan="2">REASON</td>
+				</tr>
+				<tr class="text-center">
+					<td>ETD</td>
+					<td>ATA</td>
+					<td>STD (UTC)</td>
+					<td>STA (UTC)</td>
+				</tr>
+				<tr class="text-center">
+					<td> 1 </td>
+					<td><?php echo $row['flight_number'];?></td>
+					<td><?php echo $row['aircraft_reg'];?></td>
+					<td><?php echo $row['route'];?></td>
+					<td><?php echo $row['etd'];?></td>
+					<td><?php echo $row['lta'];?></td>
+					<td><?php echo $row['std'];?></td>
+					<td><?php echo $row['sta'];?></td>
+					<td><?php echo $row['keterangan'];?></td>
+				</tr>
+			</table>
 			<br>
-			PIC Slot
+			<table>
+				<tr><td>Demikian pengajuan ini kami sampaikan, atas perhatian dan kerjasamanya kami ucapkan banyak terima kasih.</td></tr>
+			</table>
 			<br>
-			<img src="img/lion_air.jpg" width="200px">
-			<br>
-			Anang Julianto
-		</td>
-	</tr>
-</table>
-</div>
-        </div>
-      </div>
-    </div>
+			<table width="100%">
+				<tr>
+					<td width="25%"></td>
+					<td width="25%"></td>
+					<td width="25%"></td>
+					<td class="text-center">
+						<?php $time=strtotime($row['tanggal_surat']);?>
+						Balikpapan, <?php echo date("d M Y",$time);?>
+						<br>
+						PIC Slot
+						<br>
+						<img src="img/<?php echo $row['ttd'];?>" width="200px">
+						<br>
+						<?php echo $row['nama'];?>
+					</td>
+				</tr>
+			</table>
+		</div>
+        </div></div></div></div></div></div>
+        </body>
     
     <!-- Bootstrap core JavaScript-->
     <script src="vendor/jquery/jquery.min.js"></script>

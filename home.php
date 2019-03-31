@@ -1,6 +1,10 @@
 <?php
     include 'fungsi/koneksi.php'; 
     session_start();
+    if (!isset($_SESSION['nik'])) {
+      header("location: fungsi/logout.php");
+    }
+    $nik = $_SESSION['nik'];
     $nama = $_SESSION['nama'];
     $status = $_SESSION['status'];
  ?>
@@ -34,6 +38,8 @@
     <div class="container-fluid">
       <div class="row margin-atas">
         <div class="col-12">
+        <h1>List Pengajuan</h1>
+        <hr>
           <div class="card mb-3">
         <div class="card-header">
           <i class="fa fa-table"></i> Data Tabel Pengajuan</div>
@@ -48,20 +54,24 @@
                   <th rowspan="2">Perihal</th>
                   <th rowspan="2">Route</th>
                   <th colspan="2" class="text-center">Status</th>
+                  <th>
+                    <a href="fungsi/kosong_pengajuan.php?nomor=<?php echo $nik; ?>"><button class="btn btn-danger"><span class="fa fa-trash"> Kosongkan</h6></span></button></a>
+                  </th>
                 </tr>
                 <tr>
                   <th>Dikirim</th>
                   <th>Diterima</th>
+                  <th>AKSI</th>
                 </tr>
               </thead>
               <tbody>
                 <?php
                     $no=0;
-                    $tabel="SELECT * FROM surat";
+                    $tabel="SELECT * FROM surat, karyawan WHERE surat.status='PENDING' AND surat.nik='$nik'";
                     $res=mysqli_query($koneksi,$tabel);
                     while ($row=mysqli_fetch_array($res)) {
                       $time=strtotime($row['tanggal_surat']);
-                ?>
+                ?><tr>
                     <td><?php echo ++$no; ?></td>
                     <td><a href="dikirim.php?nomor=<?php echo $row['nomor_surat'];?>"><?php echo $row['nomor_surat']; ?></a></td>
                     <td><?php echo date("d-m-Y",$time); ?></td>
@@ -77,6 +87,8 @@
                           }
                       ?>  
                     </td>
+                    <td><h6><a href="fungsi/hapus_pengajuan.php?nomor=<?php echo $row['nomor_surat']; ?>"><button class="btn btn-danger"><span class="fa fa-trash"> Hapus</h6></span></button></a></td>
+                    </tr>
                 <?php
                     }
                 ?>
